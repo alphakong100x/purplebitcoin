@@ -1,6 +1,4 @@
 # CryptoMarketer AI • Promo Site  
-AI-Powered Marketing for Crypto Founders | Powered By Purple Bitcoin
-
 *Powered by Purple Bitcoin (PBTC)*  
 
 [![Build](https://github.com/PurpleBitcoin/CryptoMarketerAI‑promo/actions/workflows/ci.yml/badge.svg)](https://github.com/PurpleBitcoin/CryptoMarketerAI‑promo/actions/workflows/ci.yml)
@@ -126,6 +124,8 @@ API route /api/signup saves form data through a Zod schema and returns 200.
 
 Roadmap JSON sits in /data/roadmap.json and feeds the timeline component.
 
+For a more detailed development roadmap, please see the [ROADMAP.md](ROADMAP.md) file in the repository root.
+
 ## 11 How to contribute
 1. Fork ➜ branch ➜ commit descriptive messages
 2. Follow lint and type rules (pnpm lint fix helps)
@@ -170,4 +170,4 @@ This repository currently contains a static HTML/CSS/JS implementation of the pr
 
 ### Deployment
 
-The website is currently deployed at: https://alphakong100x.github.io/purplebitcoin/
+The website is currently deployed at: https://sxmwiyyl.manus.space

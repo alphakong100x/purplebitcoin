@@ -230,19 +230,19 @@ document.addEventListener('DOMContentLoaded', function() {
                     <h3 style="text-align: center; margin-bottom: 30px;">Connect Your Wallet</h3>
                     <div class="wallet-options">
                         <div class="wallet-option">
-                            <img src="assets/pbtc-logo.png" alt="Phantom" style="width: 40px; height: 40px;">
+                            <img src="assets/images/pbtc-logo.png" alt="Phantom" style="width: 40px; height: 40px;">
                             <span>Phantom</span>
                         </div>
                         <div class="wallet-option">
-                            <img src="assets/pbtc-logo.png" alt="Solflare" style="width: 40px; height: 40px;">
+                            <img src="assets/images/pbtc-logo.png" alt="Solflare" style="width: 40px; height: 40px;">
                             <span>Solflare</span>
                         </div>
                         <div class="wallet-option">
-                            <img src="assets/pbtc-logo.png" alt="Coinbase Wallet" style="width: 40px; height: 40px;">
+                            <img src="assets/images/pbtc-logo.png" alt="Coinbase Wallet" style="width: 40px; height: 40px;">
                             <span>Coinbase Wallet</span>
                         </div>
                         <div class="wallet-option">
-                            <img src="assets/pbtc-logo.png" alt="MetaMask" style="width: 40px; height: 40px;">
+                            <img src="assets/images/pbtc-logo.png" alt="MetaMask" style="width: 40px; height: 40px;">
                             <span>MetaMask</span>
                         </div>
                     </div>

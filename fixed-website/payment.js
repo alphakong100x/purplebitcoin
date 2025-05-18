@@ -173,7 +173,7 @@ function showWalletConnectModal() {
     wallets.forEach(wallet => {
         walletsHTML += `
             <div class="wallet-option" data-wallet="${wallet.name.toLowerCase()}">
-                <img src="assets/pbtc-logo.png" alt="${wallet.name}">
+                <img src="assets/images/pbtc-logo.png" alt="${wallet.name}">
                 <span>${wallet.name}</span>
             </div>
         `;
