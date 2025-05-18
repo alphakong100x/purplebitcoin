@@ -1,4 +1,6 @@
 # CryptoMarketer AI • Promo Site  
+AI-Powered Marketing for Crypto Founders | Powered By Purple Bitcoin
+
 *Powered by Purple Bitcoin (PBTC)*  
 
 [![Build](https://github.com/PurpleBitcoin/CryptoMarketerAI‑promo/actions/workflows/ci.yml/badge.svg)](https://github.com/PurpleBitcoin/CryptoMarketerAI‑promo/actions/workflows/ci.yml)
