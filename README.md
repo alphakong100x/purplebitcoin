@@ -170,4 +170,4 @@ This repository currently contains a static HTML/CSS/JS implementation of the pr
 
 ### Deployment
 
-The website is currently deployed at: https://sxmwiyyl.manus.space
+The website is currently deployed at: https://alphakong100x.github.io/purplebitcoin/
