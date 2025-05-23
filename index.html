@@ -3,648 +3,816 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CryptoMarketer AI | Powered by Purple Bitcoin</title>
+    <title>Purple Bitcoin ($PBTC) - The Autonomous Online Asset</title>
+    <meta name="description" content="Purple Bitcoin ($PBTC) - A deflationary utility token on Solana with real-world travel and payment utility. Track, learn, and engage.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@latest/lib/index.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@solana/wallet-adapter-base@latest/lib/index.min.js"></script>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
-<body>
-    <header>
-        <nav>
-            <div class="logo">
-                <img src="assets/images/gorilla-mascot.png" alt="CryptoMarketer AI Mascot" class="mascot">
-                <span>CryptoMarketer AI</span>
+<body class="bg-black text-white">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 border-b border-gray-800 bg-black/90 backdrop-blur-sm">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <img src="assets/OFFICIAL_pbtc_B.png" alt="Purple Bitcoin Logo" class="h-10 w-10">
+                <div>
+                    <h1 class="text-xl font-bold bg-gradient-to-r from-purple-500 to-purple-300 bg-clip-text text-transparent">Purple Bitcoin</h1>
+                    <p class="text-xs text-gray-400">Autonomous Online Asset v1.2</p> <!-- Version Update -->
+                </div>
             </div>
-            <div class="nav-links">
-                <a href="#home">Home</a>
-                <a href="#features">Features</a>
-                <a href="#pbtc">PBTC</a>
-                <a href="#roadmap">Roadmap</a>
-                <a href="#team">Team</a>
-                <a href="#faq">FAQ</a>
-                <a href="#join" class="cta-button">Join</a>
+            <nav class="hidden md:flex items-center space-x-4 lg:space-x-6" id="main-nav">
+                <a href="#dashboard" class="text-sm text-white hover:text-purple-400 transition">Dashboard</a>
+                <a href="#blog" class="text-sm text-white hover:text-purple-400 transition">Blog</a>
+                <a href="#video" class="text-sm text-white hover:text-purple-400 transition">Explainer</a>
+                <a href="#media" class="text-sm text-white hover:text-purple-400 transition">Media</a>
+                <a href="#education" class="text-sm text-white hover:text-purple-400 transition">Learn</a>
+                <a href="#utility" class="text-sm text-white hover:text-purple-400 transition">Utility</a>
+                <a href="#news" class="text-sm text-white hover:text-purple-400 transition">Updates</a>
+                <a href="#community" class="text-sm text-white hover:text-purple-400 transition">Community</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <button id="connect-wallet-button" class="hidden md:block px-4 py-2 rounded-lg bg-gradient-to-r from-purple-600 to-purple-400 text-sm font-medium hover:opacity-90 transition">
+                    Connect Wallet
+                </button>
+                <button id="mobile-menu-button" class="md:hidden text-white">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
             </div>
-            <div class="menu-toggle">
-                <i class="fas fa-bars"></i>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-900 border-b border-gray-800">
+            <div class="container mx-auto px-4 py-3">
+                <nav class="flex flex-col space-y-3">
+                    <a href="#dashboard" class="text-sm text-white hover:text-purple-400 transition">Dashboard</a>
+                    <a href="#blog" class="text-sm text-white hover:text-purple-400 transition">Blog</a>
+                    <a href="#video" class="text-sm text-white hover:text-purple-400 transition">Explainer Video</a>
+                    <a href="#media" class="text-sm text-white hover:text-purple-400 transition">Media Gallery</a>
+                    <a href="#education" class="text-sm text-white hover:text-purple-400 transition">Learn & Earn</a>
+                    <a href="#utility" class="text-sm text-white hover:text-purple-400 transition">Use PBTC</a>
+                    <a href="#news" class="text-sm text-white hover:text-purple-400 transition">News & Updates</a>
+                    <a href="#community" class="text-sm text-white hover:text-purple-400 transition">Community</a>
+                    <button id="mobile-connect-wallet" class="w-full mt-2 px-4 py-2 rounded-lg bg-gradient-to-r from-purple-600 to-purple-400 text-sm font-medium hover:opacity-90 transition text-left">
+                        Connect Wallet
+                    </button>
+                </nav>
             </div>
-        </nav>
+        </div>
     </header>
 
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>AI-Powered Marketing for Crypto Founders</h1>
-            <p>Launch full-stack marketing in <span class="highlight">&lt;20 minutes</span>. Save <span class="highlight">120+ staff hours/month</span>.</p>
-            <div class="cta-buttons">
-                <a href="#join" class="primary-button">Join Early Access • Pay in PBTC</a>
-                <a href="#" class="secondary-button wallet-connect">Connect Wallet</a>
+    <!-- Wallet Connected Banner -->
+    <div id="wallet-banner" class="hidden bg-gradient-to-r from-purple-900/50 to-purple-700/50 border-b border-purple-500/30">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <span class="mr-2 inline-block h-2 w-2 rounded-full bg-green-400 pulse"></span>
+                <span class="text-sm wallet-text">Connected: </span>
+                <span id="wallet-address" class="ml-2 text-sm font-mono text-gray-300 truncate max-w-[150px] md:max-w-xs">...</span>
+            </div>
+            <div class="flex items-center">
+                <span class="text-sm mr-2">Balance:</span>
+                <span id="pbtc-balance" class="font-medium text-purple-300">-- PBTC</span>
             </div>
         </div>
-        <div class="hero-image">
-            <img src="assets/images/gorilla-mascot.png" alt="CryptoMarketer AI Mascot" class="floating">
-        </div>
-        <div class="hero-background"></div>
-    </section>
+    </div>
 
-    <section id="problem-solution">
-        <div class="container">
-            <div class="problem">
-                <h2>The Problem</h2>
-                <div class="pain-points">
-                    <div class="pain-point">
-                        <i class="fas fa-clock"></i>
-                        <h3>Time Drain</h3>
-                        <p>Crypto founders spend 20+ hours weekly on marketing tasks instead of building.</p>
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-6">
+        <!-- Hero Section -->
+        <section id="hero" class="mb-12 rounded-2xl bg-gradient-to-br from-purple-900/30 to-purple-700/10 p-6 sm:p-8 border border-purple-700/30">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="md:w-2/3 mb-6 md:mb-0 md:pr-8">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                        <span class="bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">Deflationary. Utility. Speed.</span>
+                        <span class="block mt-1">This is Purple Bitcoin.</span>
+                    </h2>
+                    <p class="text-gray-300 mb-6">Dive into $PBTC: Experience Bitcoin's scarcity on Solana's hyper-fast network. Real utility, real burns, real-time data – all in one Autonomous Asset.</p>
+                    <div class="flex flex-col sm:flex-row gap-4 mt-4">
+                        <a href="https://dexscreener.com/solana/ath32pblrupjq8ynuhqwajbgbbgprbrw2gzw5jdzxirr" target="_blank" rel="noopener noreferrer" class="px-6 py-3 bg-purple-600 rounded-lg text-center font-medium hover:bg-purple-500 transition shadow-md hover:shadow-lg transform hover:-translate-y-0.5">Secure Your $PBTC</a>
+                        <a href="#blog" class="px-6 py-3 bg-gray-800 rounded-lg text-center font-medium hover:bg-gray-700 transition">Discover Why PBTC</a>
                     </div>
-                    <div class="pain-point">
-                        <i class="fas fa-money-bill-wave"></i>
-                        <h3>High Costs</h3>
-                        <p>Hiring marketing teams costs $15k+/month with unpredictable results.</p>
-                    </div>
-                    <div class="pain-point">
-                        <i class="fas fa-chart-line"></i>
-                        <h3>Poor Tracking</h3>
-                        <p>Most teams can't measure which marketing efforts actually drive token growth.</p>
+                </div>
+                <div class="md:w-1/3 w-full">
+                    <div class="relative">
+                        <div class="rounded-xl overflow-hidden border border-purple-700/50 bg-purple-900/20 p-4 shadow-xl">
+                            <h3 class="text-lg font-medium mb-3 text-center text-purple-300">Live PBTC Data</h3>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div class="bg-black/30 rounded-lg p-3 text-center">
+                                    <p class="text-xs text-gray-400 mb-1">Price (USD)</p>
+                                    <p id="current-price" class="text-lg md:text-xl font-bold text-white">$0.00</p>
+                                </div>
+                                <div class="bg-black/30 rounded-lg p-3 text-center">
+                                    <p class="text-xs text-gray-400 mb-1">24h Change</p>
+                                    <p id="price-change" class="text-lg md:text-xl font-bold">0.00%</p>
+                                </div>
+                                <div class="bg-black/30 rounded-lg p-3 text-center">
+                                    <p class="text-xs text-gray-400 mb-1">Volume (24h)</p>
+                                    <p id="volume" class="text-base md:text-lg font-bold text-white">$0</p>
+                                </div>
+                                <div class="bg-black/30 rounded-lg p-3 text-center">
+                                    <p class="text-xs text-gray-400 mb-1">Market Cap</p>
+                                    <p id="market-cap" class="text-base md:text-lg font-bold text-white">$0</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="solution">
-                <h2>Our Solution</h2>
-                <div class="solution-points">
-                    <div class="solution-point">
-                        <i class="fas fa-robot"></i>
-                        <h3>AI Automation</h3>
-                        <p>One platform handles social, content, community, airdrops, and analytics.</p>
-                    </div>
-                    <div class="solution-point">
-                        <i class="fas fa-bolt"></i>
-                        <h3>Launch Fast</h3>
-                        <p>Set up your entire marketing stack in minutes, not months.</p>
-                    </div>
-                    <div class="solution-point">
-                        <i class="fas fa-chart-pie"></i>
-                        <h3>Data-Driven</h3>
-                        <p>Track exactly which efforts drive token price and community growth.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="features">
-        <div class="container">
-            <h2>Powerful Features</h2>
-            <div class="feature-grid">
-                <div class="feature-card" data-feature="social">
-                    <div class="feature-icon">
-                        <i class="fas fa-share-alt"></i>
-                    </div>
-                    <h3>Social Scheduler</h3>
-                    <p>AI-generated posts across Twitter, Discord, Telegram & more.</p>
-                    <span class="learn-more">Learn More</span>
-                </div>
-                <div class="feature-card" data-feature="content">
-                    <div class="feature-icon">
-                        <i class="fas fa-pen-fancy"></i>
-                    </div>
-                    <h3>Content Writer</h3>
-                    <p>Generate blog posts, newsletters & whitepapers in seconds.</p>
-                    <span class="learn-more">Learn More</span>
-                </div>
-                <div class="feature-card" data-feature="community">
-                    <div class="feature-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Community Bot</h3>
-                    <p>24/7 AI support for Discord & Telegram communities.</p>
-                    <span class="learn-more">Learn More</span>
-                </div>
-                <div class="feature-card" data-feature="airdrops">
-                    <div class="feature-icon">
-                        <i class="fas fa-parachute-box"></i>
-                    </div>
-                    <h3>Airdrop Engine</h3>
-                    <p>Automated token distribution with fraud protection.</p>
-                    <span class="learn-more">Learn More</span>
-                </div>
-                <div class="feature-card" data-feature="referrals">
-                    <div class="feature-icon">
-                        <i class="fas fa-handshake"></i>
-                    </div>
-                    <h3>Referral Tracker</h3>
-                    <p>Reward community members who bring in new holders.</p>
-                    <span class="learn-more">Learn More</span>
-                </div>
-                <div class="feature-card" data-feature="analytics">
-                    <div class="feature-icon">
-                        <i class="fas fa-chart-bar"></i>
-                    </div>
-                    <h3>ROI Dashboard</h3>
-                    <p>Track which marketing efforts drive token price & volume.</p>
-                    <span class="learn-more">Learn More</span>
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="mb-12 scroll-mt-20">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold">Market Dashboard</h2>
+                <div class="text-sm bg-purple-900/30 rounded-lg px-3 py-1 border border-purple-700/30">
+                    <span class="text-purple-400 mr-1">Last updated:</span>
+                    <span id="last-updated">Just now</span>
                 </div>
             </div>
-        </div>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Price Chart -->
+                <div class="lg:col-span-2 bg-gray-900/50 rounded-xl p-4 border border-gray-800 shadow-lg">
+                    <h3 class="text-lg font-medium mb-3 text-purple-300">PBTC Price Chart</h3>
+                    <div class="h-80 relative">
+                        <canvas id="price-chart"></canvas>
+                        <div id="chart-loading" class="absolute inset-0 flex items-center justify-center bg-gray-900/70 rounded-lg">
+                            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-400"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Stats -->
+                <div class="bg-gray-900/50 rounded-xl p-4 border border-gray-800 shadow-lg">
+                    <h3 class="text-lg font-medium mb-3 text-purple-300">Key Statistics</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center pb-2 border-b border-gray-800">
+                            <span class="text-sm text-gray-400">Holders</span>
+                            <span id="holders-count" class="font-medium text-white">Loading...</span>
+                        </div>
+                        <div class="flex justify-between items-center pb-2 border-b border-gray-800">
+                            <span class="text-sm text-gray-400">Circulating Supply</span>
+                            <span id="circulating-supply" class="font-medium text-white">Loading...</span>
+                        </div>
+                        <div class="flex justify-between items-center pb-2 border-b border-gray-800">
+                            <span class="text-sm text-gray-400">Total Burned</span>
+                            <span id="total-burned" class="font-medium text-white">Loading...</span>
+                        </div>
+                        <div class="flex justify-between items-center pb-2 border-b border-gray-800">
+                            <span class="text-sm text-gray-400">All-Time High</span>
+                            <span id="ath" class="font-medium text-white">Loading...</span>
+                        </div>
+                        <div class="flex justify-between items-center pb-2 border-b border-gray-800">
+                            <span class="text-sm text-gray-400">Liquidity (DEX)</span>
+                            <span id="liquidity" class="font-medium text-white">Loading...</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-400">Listed On</span>
+                            <span id="exchange-count" class="font-medium text-white">Loading...</span>
+                        </div>
+                        <div class="bg-purple-900/30 rounded-lg p-3 mt-4 border border-purple-700/30">
+                            <h4 class="text-sm font-medium text-purple-300 mb-2 flex items-center">
+                                <i class="fas fa-fire-flame-curved mr-2 text-orange-400"></i>
+                                Latest Burn Event
+                            </h4>
+                            <div id="latest-burn" class="text-sm">Loading latest burn data...</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DEX Information -->
+                <div class="lg:col-span-2 bg-gray-900/50 rounded-xl p-4 border border-gray-800 shadow-lg">
+                    <h3 class="text-lg font-medium mb-3 text-purple-300">Trading Pairs</h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-800">
+                            <thead>
+                                <tr>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Exchange</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Pair</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Price</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">24h Volume</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="trading-pairs" class="divide-y divide-gray-800">
+                                <!-- Example row for structure, actual data loaded by JS -->
+                                <tr class="animate-pulse">
+                                    <td colspan="5" class="px-4 py-4 text-sm text-center text-gray-500">Loading trading pairs...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Burn Statistics -->
+                <div class="bg-gray-900/50 rounded-xl p-4 border border-gray-800 shadow-lg">
+                    <h3 class="text-lg font-medium mb-3 text-purple-300">Burn Statistics</h3>
+                    <div class="mb-4 h-48"> <!-- Fixed height for canvas container -->
+                        <canvas id="burn-chart"></canvas>
+                    </div>
+                    <div class="bg-gray-800/50 rounded-lg p-3 border border-gray-700/30">
+                        <div class="flex justify-between mb-2">
+                            <span class="text-sm text-gray-400">Burn Rate (7d Avg)</span>
+                            <span id="burn-rate" class="text-sm font-medium text-white">Loading...</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-sm text-gray-400">Est. Time to 50% Supply</span>
+                            <span id="burn-projection" class="text-sm font-medium text-white">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Section (New) -->
+        <section id="blog" class="mb-12 scroll-mt-20">
+            <h2 class="text-2xl font-bold mb-6">From the PBTC Blog</h2>
+            <div id="blog-posts-container" class="space-y-8">
+                 <!-- Blog posts will be loaded here by JS -->
+                 <div class="bg-gray-900/50 rounded-xl p-4 sm:p-6 border border-gray-800 shadow-lg animate-pulse">
+                    <div class="h-8 bg-gray-800 rounded w-3/4 mb-4"></div>
+                    <div class="h-4 bg-gray-800 rounded w-1/3 mb-3"></div>
+                    <div class="space-y-2">
+                        <div class="h-4 bg-gray-800 rounded w-full"></div>
+                        <div class="h-4 bg-gray-800 rounded w-full"></div>
+                        <div class="h-4 bg-gray-800 rounded w-5/6"></div>
+                    </div>
+                 </div>
+                  <div class="bg-gray-900/50 rounded-xl p-4 sm:p-6 border border-gray-800 shadow-lg animate-pulse">
+                    <div class="h-8 bg-gray-800 rounded w-full mb-4"></div>
+                    <div class="h-4 bg-gray-800 rounded w-1/4 mb-3"></div>
+                    <div class="space-y-2">
+                        <div class="h-4 bg-gray-800 rounded w-full"></div>
+                        <div class="h-4 bg-gray-800 rounded w-11/12"></div>
+                        <div class="h-4 bg-gray-800 rounded w-3/4"></div>
+                    </div>
+                 </div>
+            </div>
+        </section>
+
+        <!-- Explainer Video Section (New) -->
+         <section id="video" class="mb-12 scroll-mt-20">
+            <h2 class="text-2xl font-bold mb-6">PBTC Explained: The Video</h2>
+            <div class="bg-gray-900/50 rounded-xl p-4 sm:p-6 border border-gray-800 shadow-lg">
+                 <h3 class="text-xl font-medium mb-2 text-purple-300">Purple Bitcoin ($PBTC) on Solana: Scarcity, Speed, Utility - Explained!</h3>
+                 <p class="text-sm text-gray-400 mb-4">Our animated explainer video is coming soon! Get a sneak peek by reading the script below.</p>
+                <div class="bg-black/30 p-4 rounded-lg border border-purple-700/30">
+                    <div id="video-script-content" class="educational-content text-gray-300 max-h-80 overflow-y-auto pr-2">
+                       <!-- Video script content will be loaded here by JS -->
+                        <div class="animate-pulse space-y-2">
+                            <div class="h-4 bg-gray-800 rounded w-full"></div>
+                            <div class="h-4 bg-gray-800 rounded w-11/12"></div>
+                            <div class="h-4 bg-gray-800 rounded w-3/4"></div>
+                            <div class="h-4 bg-gray-800 rounded w-full mt-3"></div>
+                            <div class="h-4 bg-gray-800 rounded w-5/6"></div>
+                        </div>
+                     </div>
+                </div>
+            </div>
+         </section>
+
+        <!-- Media Gallery Section (New) -->
+        <section id="media" class="mb-12 scroll-mt-20">
+            <h2 class="text-2xl font-bold mb-6">PBTC Media Gallery</h2>
+            <div id="infographics-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+                <!-- Infographics will be loaded here by JS -->
+                <div class="bg-gray-900/50 rounded-xl p-2 border border-gray-800 shadow-lg flex items-center justify-center aspect-[2/3] animate-pulse">
+                    <div class="h-full w-full bg-gray-800 rounded"></div>
+                </div>
+                 <div class="bg-gray-900/50 rounded-xl p-2 border border-gray-800 shadow-lg flex items-center justify-center aspect-[2/3] animate-pulse">
+                    <div class="h-full w-full bg-gray-800 rounded"></div>
+                </div>
+                 <div class="bg-gray-900/50 rounded-xl p-2 border border-gray-800 shadow-lg flex items-center justify-center aspect-[2/3] animate-pulse">
+                    <div class="h-full w-full bg-gray-800 rounded"></div>
+                </div>
+                 <div class="bg-gray-900/50 rounded-xl p-2 border border-gray-800 shadow-lg flex items-center justify-center aspect-[2/3] animate-pulse">
+                    <div class="h-full w-full bg-gray-800 rounded"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="mb-12 scroll-mt-20">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold">Learn & Earn PBTC</h2>
+                <div id="learning-progress" class="text-sm bg-purple-900/30 rounded-lg px-3 py-1 border border-purple-700/30">
+                    <span class="text-purple-400 mr-1">Your progress:</span>
+                    <span>0/3 completed</span>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-gray-900/50 rounded-xl p-4 border border-gray-800 shadow-lg hover:shadow-purple-500/20 transition-shadow duration-300">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 rounded-full bg-purple-900 flex items-center justify-center mr-3">
+                            <i class="fas fa-coins text-purple-300"></i>
+                        </div>
+                        <h3 class="text-lg font-medium text-purple-300">PBTC Tokenomics</h3>
+                    </div>
+                    <p class="text-sm text-gray-300 mb-3">Unlock the secrets of Purple Bitcoin's deflationary model and its journey towards $1.</p>
+                    <div class="flex justify-between items-center mt-4">
+                        <button class="read-module text-sm px-3 py-1.5 bg-purple-700 rounded-lg hover:bg-purple-600 transition" data-module="tokenomics">Start Learning</button>
+                        <span class="text-xs text-gray-400">+5 PBTC Reward</span>
+                    </div>
+                </div>
+
+                <div class="bg-gray-900/50 rounded-xl p-4 border border-gray-800 shadow-lg hover:shadow-purple-500/20 transition-shadow duration-300">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 rounded-full bg-purple-900 flex items-center justify-center mr-3">
+                            <i class="fas fa-rocket text-purple-300"></i>
+                        </div>
+                        <h3 class="text-lg font-medium text-purple-300">Solana Advantage</h3>
+                    </div>
+                    <p class="text-sm text-gray-300 mb-3">Discover why PBTC thrives on Solana, leveraging speed and low fees for maximum impact.</p>
+                    <div class="flex justify-between items-center mt-4">
+                        <button class="read-module text-sm px-3 py-1.5 bg-purple-700 rounded-lg hover:bg-purple-600 transition" data-module="solanaAdvantage">Start Learning</button>
+                         <span class="text-xs text-gray-400">+5 PBTC Reward</span>
+                    </div>
+                </div>
+
+                <div class="bg-gray-900/50 rounded-xl p-4 border border-gray-800 shadow-lg hover:shadow-purple-500/20 transition-shadow duration-300">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 rounded-full bg-purple-900 flex items-center justify-center mr-3">
+                            <i class="fas fa-suitcase-rolling text-purple-300"></i>
+                        </div>
+                        <h3 class="text-lg font-medium text-purple-300">Purple Travel Guide</h3>
+                    </div>
+                    <p class="text-sm text-gray-300 mb-3">Travel the world with PBTC. Learn how to book flights & hotels with exclusive discounts.</p>
+                    <div class="flex justify-between items-center mt-4">
+                        <button class="read-module text-sm px-3 py-1.5 bg-purple-700 rounded-lg hover:bg-purple-600 transition" data-module="purpleTravel">Start Learning</button>
+                         <span class="text-xs text-gray-400">+5 PBTC Reward</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Education Module Modal -->
+            <div id="education-modal" class="fixed inset-0 bg-black/80 flex items-center justify-center z-[60] hidden p-4">
+                <div class="bg-gray-900 rounded-xl max-w-2xl w-full max-h-[90vh] flex flex-col shadow-2xl border border-purple-700/50">
+                    <div class="px-6 py-4 border-b border-gray-800 flex justify-between items-center">
+                        <h3 id="modal-title" class="text-lg font-medium text-purple-300">Module Title</h3>
+                        <button id="close-modal" class="text-gray-400 hover:text-white">
+                            <i class="fas fa-times text-xl"></i>
+                        </button>
+                    </div>
+                    <div id="modal-content" class="px-6 py-4 text-gray-300 educational-content overflow-y-auto flex-grow">
+                        <!-- Content will be loaded here -->
+                    </div>
+                    <div class="px-6 py-4 border-t border-gray-800 flex justify-between items-center bg-gray-900/70">
+                        <div>
+                            <button id="mark-complete" class="px-4 py-2 bg-purple-600 rounded-lg text-sm font-medium hover:bg-purple-500 transition">
+                                Mark as Complete
+                            </button>
+                        </div>
+                        <div class="text-sm text-gray-400">
+                            Earn <span id="module-reward" class="font-bold text-purple-300">+0 PBTC</span> for completion!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         
-        <!-- Feature Modal -->
-        <div id="feature-modal" class="modal">
-            <div class="modal-content">
-                <span class="close-modal">&times;</span>
-                <div id="modal-social" class="modal-feature">
-                    <h3>Social Scheduler</h3>
-                    <p>Never worry about what to post again. Our AI analyzes top-performing crypto content and generates custom posts for your project. Schedule weeks of content in minutes across Twitter, Discord, Telegram, LinkedIn, and more.</p>
-                    <ul>
-                        <li>AI-generated posts based on your token's unique features</li>
-                        <li>Optimal posting times based on your audience</li>
-                        <li>Auto-hashtag optimization for maximum reach</li>
-                        <li>One-click approval workflow</li>
-                    </ul>
-                </div>
-                <div id="modal-content" class="modal-feature">
-                    <h3>Content Writer</h3>
-                    <p>Create professional crypto content in seconds. From technical blog posts to investor newsletters, our AI writes compelling content that converts readers into token holders.</p>
-                    <ul>
-                        <li>Generate full blog posts with proper crypto terminology</li>
-                        <li>Create investor newsletters that drive engagement</li>
-                        <li>Draft whitepaper sections with technical accuracy</li>
-                        <li>SEO optimization built-in for maximum discoverability</li>
-                    </ul>
-                </div>
-                <div id="modal-community" class="modal-feature">
-                    <h3>Community Bot</h3>
-                    <p>Your 24/7 community manager. Our AI bot answers questions, moderates chats, and keeps your community engaged even when you're sleeping.</p>
-                    <ul>
-                        <li>Answers technical questions about your token</li>
-                        <li>Moderates spam and scam attempts</li>
-                        <li>Runs community games and engagement activities</li>
-                        <li>Escalates important issues to human team members</li>
-                    </ul>
-                </div>
-                <div id="modal-airdrops" class="modal-feature">
-                    <h3>Airdrop Engine</h3>
-                    <p>Run fraud-resistant token airdrops that actually build community. Our engine verifies real humans, distributes tokens, and measures ROI.</p>
-                    <ul>
-                        <li>Sybil-resistant verification system</li>
-                        <li>Automated distribution to verified wallets</li>
-                        <li>Custom tasks and quests for participants</li>
-                        <li>Analytics on holder retention post-airdrop</li>
-                    </ul>
-                </div>
-                <div id="modal-referrals" class="modal-feature">
-                    <h3>Referral Tracker</h3>
-                    <p>Turn your community into your marketing team. Reward members who bring in new token holders with automated tracking and distribution.</p>
-                    <ul>
-                        <li>Unique referral links for community members</li>
-                        <li>Automated reward distribution</li>
-                        <li>Tiered rewards for top performers</li>
-                        <li>Fraud detection to prevent gaming the system</li>
-                    </ul>
-                </div>
-                <div id="modal-analytics" class="modal-feature">
-                    <h3>ROI Dashboard</h3>
-                    <p>Know exactly which marketing efforts drive token price and volume. Connect your wallet to see real-time data on your marketing ROI.</p>
-                    <ul>
-                        <li>Track correlation between marketing actions and token price</li>
-                        <li>Measure community growth and engagement metrics</li>
-                        <li>Compare your performance to similar tokens</li>
-                        <li>AI recommendations for improving results</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="case-studies">
-        <div class="container">
-            <h2>Proof of Concept</h2>
-            <div class="case-cards">
-                <div class="case-card">
-                    <div class="case-stat">3×</div>
-                    <h3>Community Growth</h3>
-                    <p>Telegram grew from 2,500 to 7,800 members in just 14 days using our AI community bot.</p>
-                </div>
-                <div class="case-card">
-                    <div class="case-stat">+42%</div>
-                    <h3>Token Volume</h3>
-                    <p>Trading volume increased by 42% after implementing our airdrop and referral system.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="pbtc">
-        <div class="container">
-            <div class="pbtc-content">
-                <h2>Why Purple Bitcoin?</h2>
-                <p>CryptoMarketer AI is exclusively powered by Purple Bitcoin (PBTC), bringing unique benefits to both our platform users and token holders.</p>
-                
-                <div class="pbtc-features">
-                    <div class="pbtc-feature">
-                        <i class="fas fa-lock"></i>
-                        <h3>Exclusive Access</h3>
-                        <p>Pay for CryptoMarketer AI only with PBTC tokens.</p>
+        <!-- Utility Section -->
+        <section id="utility" class="mb-12 scroll-mt-20">
+            <h2 class="text-2xl font-bold">PBTC Utility: Experience Real Value</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-gray-900/50 rounded-xl p-6 border border-gray-800 shadow-lg hover:border-purple-500/50 transition-all duration-300">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-purple-900 flex items-center justify-center mr-4">
+                            <i class="fas fa-plane-departure text-xl text-purple-300"></i>
+                        </div>
+                        <h3 class="text-xl font-medium text-purple-300">Purple Travel Platform</h3>
                     </div>
-                    <div class="pbtc-feature">
-                        <i class="fas fa-fire"></i>
-                        <h3>Token Burn</h3>
-                        <p>2% of every subscription is burned monthly, reducing supply.</p>
+                    <p class="text-gray-300 mb-4">Book flights, hotels, and experiences worldwide with $PBTC. Enjoy exclusive discounts and earn rewards on every booking.</p>
+                    <ul class="mb-6 space-y-2 text-sm">
+                        <li class="flex items-start"><i class="fas fa-check-circle text-purple-400 mt-1 mr-2 shrink-0"></i>Save up to 18% vs. traditional platforms.</li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-purple-400 mt-1 mr-2 shrink-0"></i>Earn PBTC rewards (up to 3.5% cashback).</li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-purple-400 mt-1 mr-2 shrink-0"></i>Access exclusive deals for PBTC holders.</li>
+                    </ul>
+                    <a href="https://purplebitcoin.com/travel" target="_blank" rel="noopener noreferrer" class="block w-full px-4 py-3 bg-purple-600 rounded-lg text-center font-medium hover:bg-purple-500 transition transform hover:scale-105">
+                        Explore Purple Travel <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <div class="bg-gray-900/50 rounded-xl p-6 border border-gray-800 shadow-lg hover:border-purple-500/50 transition-all duration-300">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-purple-900 flex items-center justify-center mr-4 relative">
+                            <i class="fas fa-credit-card text-xl text-purple-300"></i>
+                            <span class="absolute -top-1 -right-2 bg-yellow-400 text-black text-[0.65rem] px-1.5 py-0.5 rounded-full font-semibold">SOON</span>
+                        </div>
+                        <h3 class="text-xl font-medium text-purple-300">Purple Pay System</h3>
                     </div>
-                    <div class="pbtc-feature">
-                        <i class="fas fa-chart-line"></i>
-                        <h3>Holder Benefits</h3>
-                        <p>Hold 1M PBTC to unlock premium analytics features.</p>
+                    <p class="text-gray-300 mb-4">Revolutionize payments with Purple Pay. Near-instant, low-fee $PBTC transactions for merchants and users on Solana.</p>
+                     <ul class="mb-6 space-y-2 text-sm">
+                        <li class="flex items-start"><i class="fas fa-bolt text-purple-400 mt-1 mr-2 shrink-0"></i>Near-instant global settlement.</li>
+                        <li class="flex items-start"><i class="fas fa-tags text-purple-400 mt-1 mr-2 shrink-0"></i>Drastically lower fees than credit cards.</li>
+                        <li class="flex items-start"><i class="fas fa-tools text-purple-400 mt-1 mr-2 shrink-0"></i>Easy integration for merchants.</li>
+                    </ul>
+                    <div class="flex items-center justify-center w-full px-4 py-3 bg-gray-800 rounded-lg text-center border border-gray-700">
+                        <span class="text-gray-300 mr-2 text-sm">Development Progress:</span>
+                        <div class="w-1/2 h-2.5 bg-gray-700 rounded-full relative overflow-hidden">
+                            <div class="absolute top-0 left-0 h-full bg-purple-500 rounded-full animate-pulse" style="width: 50%;"></div>
+                        </div>
+                        <span class="text-purple-300 ml-2 font-medium text-sm">50%</span>
                     </div>
                 </div>
-
-                <div class="pbtc-widget">
-                    <div class="pbtc-price">
-                        <span class="price-label">Current PBTC Price:</span>
-                        <span class="price-value" id="pbtc-price">$0.00428</span>
-                        <span class="price-change positive">+12.4%</span>
-                    </div>
-                    <div class="pbtc-contract">
-                        <span class="contract-label">Contract:</span>
-                        <span class="contract-value">0x7e2b...f93a</span>
-                        <button class="copy-button" id="copy-contract"><i class="fas fa-copy"></i></button>
-                    </div>
-                    <a href="#" class="swap-button">Swap for PBTC</a>
-                </div>
             </div>
-            <div class="pbtc-image">
-                <img src="assets/images/purple-bitcoin-logo.jpg" alt="Purple Bitcoin Logo" class="rotating">
+        </section>
+        
+        <!-- News and Updates -->
+        <section id="news" class="mb-12 scroll-mt-20">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold">Intelligence Feed</h2>
+                <button id="refresh-news" class="text-sm bg-purple-900/30 rounded-lg px-3 py-1 border border-purple-700/30 flex items-center hover:bg-purple-800/40 transition">
+                    <i class="fas fa-sync-alt mr-2"></i> Refresh
+                </button>
             </div>
-        </div>
-    </section>
-
-    <section id="payment-explainer">
-        <div class="container">
-            <h2>How Payment Works</h2>
-            <div class="payment-steps">
-                <div class="payment-step">
-                    <div class="step-number">1</div>
-                    <h3>Click 'Pay with PBTC'</h3>
-                    <p>Select your subscription plan and click the payment button.</p>
-                </div>
-                <div class="payment-step">
-                    <div class="step-number">2</div>
-                    <h3>Connect Wallet</h3>
-                    <p>Your wallet will pop up to confirm the transaction.</p>
-                </div>
-                <div class="payment-step">
-                    <div class="step-number">3</div>
-                    <h3>Sign Transaction</h3>
-                    <p>Approve the PBTC payment through your wallet.</p>
-                </div>
-                <div class="payment-step">
-                    <div class="step-number">4</div>
-                    <h3>Instant Access</h3>
-                    <p>Get immediate access to all platform features.</p>
-                </div>
-            </div>
-            <div class="networks">
-                <p>Accepted networks:</p>
-                <div class="network-icons">
-                    <span class="network-icon"><i class="fab fa-ethereum"></i> Ethereum</span>
-                    <span class="network-icon"><i class="fas fa-sun"></i> Solana</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="launch-incentive">
-        <div class="container">
-            <div class="incentive-content">
-                <h2>Early Founder Incentive</h2>
-                <p>The first 100 projects to join will lock in a lifetime rate of just 0.5 PBTC per month.</p>
-                <div class="countdown">
-                    <div class="countdown-label">Spots remaining:</div>
-                    <div class="countdown-value" id="spots-counter">73</div>
-                </div>
-                <a href="#join" class="primary-button">Secure Your Spot</a>
-            </div>
-        </div>
-    </section>
-
-    <section id="roadmap">
-        <div class="container">
-            <h2>Development Roadmap</h2>
-            <div class="roadmap-container">
-                <div class="roadmap-track"></div>
-                <div class="roadmap-milestones">
-                    <div class="roadmap-milestone active">
-                        <div class="milestone-dot"></div>
-                        <div class="milestone-content">
-                            <h3>Alpha</h3>
-                            <p>Q2 2025</p>
-                            <ul>
-                                <li>Social Scheduler</li>
-                                <li>Content Writer</li>
-                                <li>Early access for founders</li>
-                            </ul>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="md:col-span-2">
+                    <div class="bg-gray-900/50 rounded-xl p-4 border border-gray-800 shadow-lg mb-6">
+                        <h3 class="text-lg font-medium mb-3 text-purple-300">Latest Announcements</h3>
+                        <div id="announcements" class="space-y-4 max-h-96 overflow-y-auto pr-2">
+                            <!-- Loading state -->
+                            <div class="animate-pulse space-y-2"><div class="h-5 bg-gray-800 rounded w-3/4"></div><div class="h-4 bg-gray-800 rounded w-full"></div><div class="h-4 bg-gray-800 rounded w-5/6"></div></div>
                         </div>
                     </div>
-                    <div class="roadmap-milestone">
-                        <div class="milestone-dot"></div>
-                        <div class="milestone-content">
-                            <h3>Beta</h3>
-                            <p>Q3 2025</p>
-                            <ul>
-                                <li>Community Bot</li>
-                                <li>Airdrop Engine</li>
-                                <li>Expanded platform access</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="roadmap-milestone">
-                        <div class="milestone-dot"></div>
-                        <div class="milestone-content">
-                            <h3>Public Launch</h3>
-                            <p>Q4 2025</p>
-                            <ul>
-                                <li>Referral Tracker</li>
-                                <li>ROI Dashboard</li>
-                                <li>Full public access</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="roadmap-milestone">
-                        <div class="milestone-dot"></div>
-                        <div class="milestone-content">
-                            <h3>DAO Plugin</h3>
-                            <p>Q1 2026</p>
-                            <ul>
-                                <li>DAO governance tools</li>
-                                <li>Voting analytics</li>
-                                <li>Proposal automation</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="roadmap-milestone">
-                        <div class="milestone-dot"></div>
-                        <div class="milestone-content">
-                            <h3>Governance Rewards</h3>
-                            <p>Q2 2026</p>
-                            <ul>
-                                <li>Platform governance</li>
-                                <li>Staking rewards</li>
-                                <li>Community-driven features</li>
-                            </ul>
+
+                    <div class="bg-gray-900/50 rounded-xl p-4 border border-gray-800 shadow-lg">
+                        <h3 class="text-lg font-medium mb-3 text-purple-300">PBTC in the News</h3>
+                        <div id="news-articles" class="space-y-4 max-h-96 overflow-y-auto pr-2">
+                           <!-- Loading state -->
+                           <div class="animate-pulse space-y-2"><div class="h-5 bg-gray-800 rounded w-3/4"></div><div class="h-4 bg-gray-800 rounded w-full"></div><div class="h-4 bg-gray-800 rounded w-5/6"></div></div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <section id="team">
-        <div class="container">
-            <h2>Team</h2>
-            <div class="team-cards">
-                <div class="team-card">
-                    <div class="team-image">
-                        <img src="assets/images/alphakong.png" alt="@alphakong100x">
+                <div class="space-y-6">
+                    <div class="bg-gray-900/50 rounded-xl p-4 border border-gray-800 shadow-lg">
+                        <div class="flex items-center mb-3">
+                            <img src="assets/OFFICIAL_pbtc_B.png" alt="Purple Soltoshi" class="w-7 h-7 mr-2 filter drop-shadow-[0_0_5px_rgba(168,85,247,0.5)]">
+                            <h3 class="text-lg font-medium text-purple-300">Purple Soltoshi Says</h3>
+                        </div>
+                        <div id="ai-insights" class="bg-purple-900/20 rounded-lg p-3 border border-purple-700/20 min-h-[100px]">
+                            <p class="text-sm text-gray-300 italic">Loading AI insights...</p>
+                        </div>
+                        <button id="ask-ai" class="mt-3 w-full text-sm px-3 py-1.5 bg-purple-700 rounded-lg hover:bg-purple-600 transition">Ask Soltoshi Anything</button>
                     </div>
-                    <h3>@alphakong100x</h3>
-                    <p>Founder & CEO</p>
-                    <div class="social-links">
-                        <a href="https://twitter.com/alphakong100x" target="_blank"><i class="fab fa-twitter"></i></a>
-                        <a href="https://linkedin.com/in/alphakong100x" target="_blank"><i class="fab fa-linkedin"></i></a>
-                    </div>
-                </div>
-                <div class="team-card">
-                    <div class="team-image mascot-team">
-                        <img src="assets/images/gorilla-mascot.png" alt="Kong AI">
-                    </div>
-                    <h3>Kong AI</h3>
-                    <p>Chief Intelligence Officer</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-github"></i></a>
+
+                    <div id="community-spotlight-container" class="bg-gray-900/50 rounded-xl p-4 border border-gray-800 shadow-lg">
+                        <h3 class="text-lg font-medium mb-3 text-purple-300">Community Spotlight</h3>
+                        <!-- Loading state -->
+                        <div class="animate-pulse space-y-2"><div class="h-5 bg-gray-800 rounded w-1/2"></div><div class="h-4 bg-gray-800 rounded w-full"></div> <div class="h-3 bg-gray-800 rounded w-1/3 mt-1"></div></div>
+                        <p class="text-xs text-gray-500 italic my-3">Community showcase submissions coming soon!</p>
+                        <button id="submit-showcase" class="w-full text-sm px-3 py-1.5 bg-gray-700 rounded-lg hover:bg-gray-600 transition cursor-not-allowed" disabled>
+                            Submit Your Work (Soon)
+                        </button>
                     </div>
                 </div>
             </div>
-            <div class="backer-quote">
-                <blockquote>
-                    "CryptoMarketer AI represents the future of crypto marketing - automated, intelligent, and powered by Purple Bitcoin."
-                </blockquote>
-                <cite>- Purple Bitcoin Core Team</cite>
-            </div>
-        </div>
-    </section>
-
-    <section id="security">
-        <div class="container">
-            <h2>Security & Compliance</h2>
-            <div class="security-features">
-                <div class="security-feature">
-                    <i class="fas fa-shield-alt"></i>
-                    <p>All APIs read-only until you approve posting</p>
-                </div>
-                <div class="security-feature">
-                    <i class="fas fa-file-contract"></i>
-                    <p>Smart contracts audited by leading security firms</p>
-                </div>
-                <div class="security-feature">
-                    <i class="fas fa-lock"></i>
-                    <p>OAuth2 authentication, no stored passwords</p>
-                </div>
-                <div class="security-feature">
-                    <i class="fas fa-user-shield"></i>
-                    <p>GDPR and CCPA compliant data handling</p>
+        </section>
+        
+        <!-- Community Engagement -->
+        <section id="community" class="mb-12 scroll-mt-20">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold">Engage & Earn</h2>
+                <div id="rewards-balance" class="text-sm bg-purple-900/30 rounded-lg px-3 py-1 border border-purple-700/30">
+                    <span class="text-purple-400 mr-1">Your rewards:</span>
+                    <span>-- PBTC</span>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <section id="faq">
-        <div class="container">
-            <h2>Frequently Asked Questions</h2>
-            <div class="faq-accordion">
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>What is CryptoMarketer AI?</h3>
-                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div id="active-tasks-container" class="lg:col-span-2 bg-gray-900/50 rounded-xl p-4 border border-gray-800 shadow-lg">
+                     <h3 class="text-lg font-medium mb-3 text-purple-300">Active Tasks & Bounties</h3>
+                     <!-- Loading state -->
+                     <div class="space-y-4 animate-pulse">
+                        <div class="p-4 bg-gray-800/50 rounded-lg"><div class="h-6 bg-gray-700 rounded w-3/4 mb-2"></div><div class="h-4 bg-gray-700 rounded w-full mb-3"></div><div class="h-8 bg-gray-600 rounded w-1/4 inline-block"></div> <div class="h-8 bg-gray-600 rounded w-1/4 inline-block ml-2"></div></div>
+                     </div>
+                </div>
+
+                <div class="bg-gray-900/50 rounded-xl p-4 border border-gray-800 shadow-lg">
+                    <h3 class="text-lg font-medium mb-4 text-purple-300">Join the #PurpleFam</h3>
+                    <div class="grid grid-cols-2 gap-3">
+                        <a href="https://t.me/purplebitcoin" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center py-3 bg-blue-500/10 hover:bg-blue-500/20 rounded-lg transition group">
+                            <i class="fab fa-telegram text-2xl text-blue-400 group-hover:text-blue-300"></i><span class="ml-2 text-sm">Telegram</span></a>
+                        <a href="https://discord.gg/purplebitcoin" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center py-3 bg-indigo-500/10 hover:bg-indigo-500/20 rounded-lg transition group">
+                            <i class="fab fa-discord text-2xl text-indigo-400 group-hover:text-indigo-300"></i><span class="ml-2 text-sm">Discord</span></a>
+                        <a href="https://twitter.com/PurpleBitcoin" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center py-3 bg-sky-500/10 hover:bg-sky-500/20 rounded-lg transition group">
+                            <i class="fab fa-twitter text-2xl text-sky-400 group-hover:text-sky-300"></i><span class="ml-2 text-sm">X (Twitter)</span></a>
+                        <a href="https://medium.com/@purplebitcoin" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center py-3 bg-gray-500/10 hover:bg-gray-500/20 rounded-lg transition group">
+                            <i class="fab fa-medium text-2xl text-gray-400 group-hover:text-gray-300"></i><span class="ml-2 text-sm">Medium</span></a>
                     </div>
-                    <div class="faq-answer">
-                        <p>CryptoMarketer AI is an all-in-one marketing automation platform specifically designed for crypto projects. It combines AI-powered content creation, social media management, community engagement, airdrop distribution, referral tracking, and analytics in one seamless platform.</p>
+                    <a href="https://dexscreener.com/solana/ath32pblrupjq8ynuhqwajbgbbgprbrw2gzw5jdzxirr" target="_blank" rel="noopener noreferrer" class="mt-4 block w-full px-4 py-3 bg-green-600 rounded-lg text-center font-medium hover:bg-green-500 transition transform hover:scale-105">
+                        Trade $PBTC on DexScreener <i class="fas fa-chart-line ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Notification Component -->
+        <div id="notification" class="fixed bottom-6 right-6 max-w-sm w-full sm:w-auto bg-gray-900 border border-purple-600 rounded-lg p-4 shadow-2xl transform translate-y-24 opacity-0 transition-all duration-300 z-[100]">
+            <div class="flex items-start">
+                <div id="notification-icon" class="w-6 h-6 rounded-full bg-purple-600 flex items-center justify-center mr-3 shrink-0 mt-0.5">
+                    <i class="fas fa-info-circle text-white"></i>
+                </div>
+                <div class="flex-1">
+                    <h4 id="notification-title" class="font-medium text-purple-300">Notification Title</h4>
+                    <p id="notification-message" class="text-sm text-gray-300 mt-1">Notification message goes here.</p>
+                </div>
+                <button id="close-notification" class="text-gray-500 hover:text-white ml-2 shrink-0 p-1 -mr-1 -mt-1">
+                    <i class="fas fa-times text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Ask Soltoshi Modal -->
+        <div id="ask-soltoshi-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-[70] hidden p-4">
+            <div class="bg-gray-900 rounded-xl max-w-lg w-full shadow-2xl border border-purple-700/50">
+                <div class="px-6 py-4 border-b border-gray-800 flex justify-between items-center">
+                    <div class="flex items-center">
+                        <img src="assets/OFFICIAL_pbtc_B.png" alt="Purple Soltoshi" class="w-7 h-7 mr-2 filter drop-shadow-[0_0_5px_rgba(168,85,247,0.5)]">
+                        <h3 class="text-lg font-medium text-purple-300">Ask Purple Soltoshi</h3>
+                    </div>
+                    <button id="close-soltoshi-modal" class="text-gray-400 hover:text-white">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                <div class="px-6 py-4">
+                    <p class="text-sm text-gray-300 mb-4">
+                        Got questions about PBTC, Solana, or crypto? Purple Soltoshi, our AI oracle, has answers.
+                    </p>
+                    <textarea id="soltoshi-question" class="w-full p-3 bg-gray-800 border border-gray-700 rounded-lg text-white text-sm focus:border-purple-500 focus:ring-1 focus:ring-purple-500 focus:outline-none transition" rows="3" placeholder="e.g., How does PBTC burning work?"></textarea>
+
+                    <div id="soltoshi-answer" class="mt-4 p-4 bg-purple-900/20 rounded-lg border border-purple-700/30 text-gray-300 text-sm hidden max-h-60 overflow-y-auto">
+                        <!-- AI response will be displayed here -->
                     </div>
                 </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>Why do I need to pay with Purple Bitcoin (PBTC)?</h3>
-                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>CryptoMarketer AI is exclusively powered by Purple Bitcoin to create a sustainable ecosystem. This model benefits both platform users and token holders by creating utility for PBTC, implementing token burns that reduce supply, and offering special perks to PBTC holders.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>How do I get Purple Bitcoin (PBTC)?</h3>
-                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>You can acquire PBTC through several methods: 1) Use the "Swap for PBTC" button on our website to connect to a DEX, 2) Purchase directly on exchanges where PBTC is listed, or 3) Use the bridge function if you hold other cryptocurrencies. We recommend using the swap function for the most seamless experience.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>Is my project data secure?</h3>
-                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Absolutely. We implement industry-leading security practices including OAuth2 authentication, read-only API access until explicitly approved, and no storage of your social media passwords. All smart contracts are audited by top security firms, and we're fully compliant with data protection regulations.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>How much time will this save my team?</h3>
-                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Based on our pilot projects, teams save an average of 120+ hours per month on marketing tasks. This includes time previously spent on content creation, social media management, community moderation, and analytics reporting. Most users can set up their entire marketing stack in less than 20 minutes.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>Can I customize the AI to match my project's voice?</h3>
-                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Yes! During onboarding, you'll provide examples of your project's communication style, key terminology, and brand guidelines. Our AI adapts to your unique voice and continuously improves as you approve or edit content. You can also create custom templates for different types of communications.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>What social platforms are supported?</h3>
-                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>We currently support Twitter, Discord, Telegram, LinkedIn, and Medium. Additional platforms including Instagram, Reddit, and TikTok are on our roadmap for Q3 2025. We prioritize platforms based on their relevance to crypto marketing and user requests.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>How does the early founder incentive work?</h3>
-                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>The first 100 projects to join CryptoMarketer AI will lock in a lifetime rate of just 0.5 PBTC per month. This rate will never increase for these founding members, even as we add new features and raise prices for later subscribers. This is our way of rewarding early adopters who believe in our vision.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>Can I cancel my subscription?</h3>
-                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Yes, you can cancel your subscription at any time. There are no long-term contracts or cancellation fees. If you cancel, you'll maintain access until the end of your current billing period. Early founders who cancel will lose their special lifetime rate if they choose to resubscribe later.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>How do I get support if I need help?</h3>
-                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>We offer multiple support channels: 1) In-app chat support available 24/7, 2) Priority email support for all subscribers, 3) Weekly onboarding webinars for new users, and 4) Comprehensive documentation and tutorials in our knowledge base. Projects with marketing budgets over $25k also qualify for dedicated account management.</p>
-                    </div>
+                <div class="px-6 py-4 border-t border-gray-800 flex justify-end bg-gray-900/70 rounded-b-xl">
+                    <button id="submit-to-soltoshi" class="px-5 py-2 bg-purple-600 rounded-lg text-sm font-medium hover:bg-purple-500 transition transform hover:scale-105">
+                        Get Wisdom
+                    </button>
                 </div>
             </div>
         </div>
-    </section>
+    </main>
 
-    <section id="join">
-        <div class="container">
-            <h2>Join the Waitlist</h2>
-            <p>Be among the first to access CryptoMarketer AI and secure your early founder benefits.</p>
-            <form id="waitlist-form" class="waitlist-form">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" placeholder="Your name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="Your email" required>
-                </div>
-                <div class="form-group">
-                    <label for="wallet">Wallet Address (for PBTC payments)</label>
-                    <input type="text" id="wallet" name="wallet" placeholder="Your wallet address" required>
-                </div>
-                <div class="form-group">
-                    <label for="project">Project Name</label>
-                    <input type="text" id="project" name="project" placeholder="Your project name" required>
-                </div>
-                <div class="form-group checkbox-group">
-                    <input type="checkbox" id="terms" name="terms" required>
-                    <label for="terms">I agree to the terms and conditions</label>
-                </div>
-                <button type="submit" class="primary-button">Join Waitlist</button>
-            </form>
-        </div>
-    </section>
-
-    <section id="contact">
-        <div class="container">
-            <h2>Enterprise Inquiries</h2>
-            <p>Projects with marketing budgets over $25k qualify for custom solutions and dedicated support.</p>
-            <a href="mailto:enterprise@cryptomarketer.ai" class="contact-button">Contact Enterprise Team</a>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <img src="assets/images/gorilla-mascot.png" alt="CryptoMarketer AI Mascot" class="footer-mascot">
-                    <span>CryptoMarketer AI</span>
-                </div>
-                <div class="footer-links">
-                    <div class="footer-column">
-                        <h3>Platform</h3>
-                        <a href="#features">Features</a>
-                        <a href="#roadmap">Roadmap</a>
-                        <a href="#security">Security</a>
-                        <a href="#faq">FAQ</a>
+    <!-- Footer -->
+    <footer class="bg-gray-900/50 border-t border-gray-800 mt-12">
+        <div class="container mx-auto px-4 py-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center mb-3">
+                        <img src="assets/OFFICIAL_pbtc_B.png" alt="Purple Bitcoin Logo" class="h-10 w-10 mr-3">
+                        <div>
+                            <h3 class="text-lg font-bold bg-gradient-to-r from-purple-500 to-purple-300 bg-clip-text text-transparent">Purple Bitcoin</h3>
+                            <p class="text-xs text-gray-400">Autonomous Online Asset</p>
+                        </div>
                     </div>
-                    <div class="footer-column">
-                        <h3>Company</h3>
-                        <a href="#team">Team</a>
-                        <a href="#">Blog</a>
-                        <a href="#">Careers</a>
-                        <a href="#contact">Contact</a>
-                    </div>
-                    <div class="footer-column">
-                        <h3>Legal</h3>
-                        <a href="#">Terms of Service</a>
-                        <a href="#">Privacy Policy</a>
-                        <a href="#">Cookie Policy</a>
-                    </div>
+                    <p class="text-sm text-gray-400">The future of deflationary utility on Solana. Join us on the journey to $1 and beyond.</p>
                 </div>
-                <div class="footer-social">
-                    <h3>Connect With Us</h3>
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-discord"></i></a>
-                        <a href="#"><i class="fab fa-telegram"></i></a>
-                        <a href="#"><i class="fab fa-medium"></i></a>
-                        <a href="#"><i class="fab fa-github"></i></a>
+                <div>
+                    <h4 class="text-md font-semibold text-purple-300 mb-3">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#dashboard" class="text-gray-400 hover:text-purple-400 transition">Dashboard</a></li>
+                        <li><a href="#blog" class="text-gray-400 hover:text-purple-400 transition">Blog</a></li>
+                        <li><a href="#utility" class="text-gray-400 hover:text-purple-400 transition">Utility</a></li>
+                        <li><a href="https://dexscreener.com/solana/ath32pblrupjq8ynuhqwajbgbbgprbrw2gzw5jdzxirr" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-purple-400 transition">Buy $PBTC</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-md font-semibold text-purple-300 mb-3">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="https://twitter.com/PurpleBitcoin" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-purple-400 transition text-xl" title="X (Twitter)"><i class="fab fa-twitter"></i></a>
+                        <a href="https://t.me/purplebitcoin" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-purple-400 transition text-xl" title="Telegram"><i class="fab fa-telegram"></i></a>
+                        <a href="https://discord.gg/purplebitcoin" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-purple-400 transition text-xl" title="Discord"><i class="fab fa-discord"></i></a>
+                        <a href="https://medium.com/@purplebitcoin" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-purple-400 transition text-xl" title="Medium"><i class="fab fa-medium"></i></a>
+                         <a href="https://purplebitcoin.com" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-purple-400 transition text-xl" title="Official Website"><i class="fas fa-globe"></i></a>
                     </div>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 CryptoMarketer AI. All rights reserved.</p>
-                <p>Powered by <a href="#">Purple Bitcoin</a></p>
+            <div class="border-t border-gray-800 pt-6 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-xs text-gray-500 mb-2 md:mb-0">
+                    &copy; 2023-2024 Purple Bitcoin ($PBTC). All rights reserved. Information purposes only. Not financial advice.
+                </p>
+                <div class="flex space-x-4 text-xs">
+                    <a href="#" title="Coming Soon" class="text-gray-500 hover:text-gray-300 transition">Terms</a>
+                    <a href="#" title="Coming Soon" class="text-gray-500 hover:text-gray-300 transition">Privacy</a>
+                    <a href="#" title="Coming Soon" class="text-gray-500 hover:text-gray-300 transition">Disclaimer</a>
+                </div>
             </div>
         </div>
     </footer>
 
-    <div class="scroll-to-top">
-        <i class="fas fa-arrow-up"></i>
-    </div>
+    <!-- Scripts -->
+    <script src="dataService.js"></script>
+    <script src="walletService.js"></script>
+    <script src="dashboard.js"></script>
+    <script src="newsService.js"></script>
+    <script src="gamification.js"></script>
+    <script src="utilities.js"></script>
+    <script src="education.js"></script>
+    <script src="notifications.js"></script>
+    <script src="content.js"></script>
+    <script src="main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const blogPosts = [
+                {
+                    title: "Understanding Purple Bitcoin's Deflationary Edge & Solana Speed: A Recipe for Value?",
+                    author: "Purple Bitcoin Team",
+                    htmlContent: `
+                        <p>In the fast-paced world of cryptocurrency, tokens and projects emerge daily, promising innovation and returns. Yet, few possess a fundamental design principle as compelling as scarcity combined with the technological foundation necessary for widespread adoption. Purple Bitcoin ($PBTC) aims to marry these two powerful forces. By building a deflationary token on the high-performance Solana blockchain, PBTC seeks to offer both long-term value potential and practical, real-world utility.</p>
+                        <p>But what exactly does "deflationary" mean in crypto, and why is Solana the ideal platform for PBTC's vision? This post dives deep into the core mechanics that give Purple Bitcoin its unique edge, explaining how scarcity, speed, and utility converge to create a distinct value proposition for anyone interested in the future of digital assets.</p>
+                        <h2>The Power of Scarcity: Understanding Deflation in Crypto</h2>
+                        <p>Scarcity is a fundamental driver of value across all markets, and cryptocurrency is no exception. Bitcoin's original design famously capped its supply at 21 million coins, a key factor in its store-of-value narrative. While many altcoins have vastly larger or even uncapped supplies, some introduce mechanisms designed to reduce supply over time – becoming <em>deflationary</em>.</p>
+                        <p>A deflationary token model means that the total circulating supply of the token decreases over time through programmed events. This is typically achieved through "burning" – permanently removing tokens from existence by sending them to an unrecoverable wallet address.</p>
+                        <p>Why pursue a deflationary model?</p>
+                        <ul>
+                            <li><strong>Potential for Value Growth:</strong> As supply decreases while demand either stays constant or increases, the value per remaining token can theoretically rise. This is the basic economic principle of supply and demand at play.</li>
+                            <li><strong>Counteracting Inflation:</strong> Many tokens, especially those used for staking rewards or ecosystem incentives, can experience inflationary pressure from new tokens being minted. Deflationary mechanisms can help offset or even reverse this inflation.</li>
+                            <li><strong>Incentivizing Holding:</strong> Knowing the supply is shrinking can encourage longer-term holding rather than immediate selling.</li>
+                        </ul>
+                        <p>For <strong>Vera the Value Voyager</strong>, the deflationary aspect of PBTC is particularly appealing. It aligns with a long-term investment mindset, providing a clear, data-driven rationale for potential value appreciation based on verifiable supply reduction. The ability to track the total tokens burned adds a layer of transparency missing in many projects.</p>
+                        <p>Purple Bitcoin achieves deflation through a combination of methods, primarily linked to its utility and transaction mechanics. We'll explore this further, but the key takeaway is that $PBTC's design is built with scarcity as a core, deliberate feature.</p>
+                        <h2>Why Solana? The Need for Speed and Efficiency</h2>
+                        <p>While scarcity addresses the "store of value" or "potential appreciation" aspect, a modern digital asset also needs to be functional. This is where Solana comes in. Choosing a blockchain is one of the most critical decisions for any crypto project, impacting everything from transaction costs and speed to scalability and developer community.</p>
+                        <p>Solana has rapidly emerged as a leading Layer 1 blockchain, specifically designed for high throughput and low transaction costs. Its innovative architecture, including Proof of History (PoH), allows it to process thousands of transactions per second (TPS) with near-instant finality, a stark contrast to the slower and often expensive transactions on older networks.</p>
+                        <p>For Purple Bitcoin, building on Solana offers distinct advantages:</p>
+                        <ul>
+                            <li><strong>Lightning-Fast Transactions:</strong> Essential for real-world utility like booking travel. No one wants to wait minutes or pay high fees to complete a simple transaction. Solana makes PBTC practical for payments.</li>
+                            <li><strong>Extremely Low Costs:</strong> Transaction fees on Solana are fractions of a cent. This is crucial for facilitating frequent, small transactions associated with utility use and also makes it cost-effective for users interacting with dApps like the PBTC Autonomous Asset.</li>
+                            <li><strong>Scalability:</strong> As the Purple Bitcoin ecosystem and utility (like Purple Travel, Purple Pay) grow, Solana can handle the increasing transaction volume without becoming congested or prohibitively expensive.</li>
+                            <li><strong>Developer Ecosystem:</strong> Solana's growing developer community and robust infrastructure provide a strong foundation for building and expanding PBTC's features and utility.</li>
+                        </ul>
+                        <p>For <strong>Alex the Solana Swiftie</strong>, Solana's attributes are the primary draw. They represent the ideal environment for rapid trading, quick transfers, and seamless interaction with decentralized applications. The low fees mean more capital stays in their pocket rather than being spent on gas. Combining this speed with PBTC's deflationary potential offers an intriguing mix of speculative and fundamental upside.</p>
+                        <p>The synergy between PBTC's deflationary tokenomics and Solana's high-performance network is not accidental. It's a deliberate design choice to create a token that is not only designed for long-term value but is also highly functional and cost-effective for everyday use within its ecosystem.</p>
+                        <h2>The PBTC Deflationary Mechanism on Solana</h2>
+                        <p>How does PBTC specifically implement deflation, leveraging Solana? The core mechanism is token burning tied directly to ecosystem activity, particularly through the Purple Travel platform.</p>
+                        <p>When users pay for travel bookings using PBTC on the Purple Travel platform, a percentage of the tokens used for payment is permanently burned. This means that every booking made with PBTC directly contributes to reducing the total supply of PBTC tokens. As the utility platform gains traction and more users book travel with PBTC, the rate of token burning increases, accelerating the deflationary pressure.</p>
+                        <p>This approach is more sustainable and utility-driven than simple transaction taxes that apply burns across all transfers, which can sometimes penalize active trading. By linking burns to <em>utility usage</em>, the deflationary effect is directly correlated with the real-world value being generated by the ecosystem.</p>
+                        <p>Furthermore, the low transaction costs on Solana make this utility-driven burning model economically viable. On a high-fee chain, the cost of processing utility payments and associated burns might be prohibitive. Solana ensures that these processes are efficient and cost-effective.</p>
+                        <p>This deflationary model creates a positive feedback loop:</p>
+                        <ol>
+                            <li>Increased adoption of Purple Travel -> More PBTC used for bookings.</li>
+                            <li>More PBTC used for bookings -> More PBTC tokens burned.</li>
+                            <li>More PBTC tokens burned -> Reduced circulating supply.</li>
+                            <li>Reduced circulating supply (ceteris paribus) -> Potential for increased value per token.</li>
+                        </ol>
+                        <p>This mechanism provides a fundamental driver for value that is tied to actual ecosystem activity, appealing strongly to <strong>Vera the Value Voyager</strong> who prioritizes sustainable, utility-backed growth. For <strong>Alex the Solana Swiftie</strong>, this means that adoption of the utility translates into measurable, on-chain scarcity, which can be a powerful market signal.</p>
+                        <h2>Conclusion: A Unique Position in the Crypto Landscape</h2>
+                        <p>Purple Bitcoin's combination of a deliberate deflationary token model and its deployment on the Solana blockchain positions it uniquely. It aims to capture the proven appeal of scarcity while leveraging the cutting-edge technology required for practical, high-volume utility.</p>
+                        <p>For those who appreciate the long-term value potential driven by shrinking supply (#VeraTheVoyager), PBTC offers a transparent, utility-backed deflationary model. For those who demand speed, efficiency, and seamless interaction within a vibrant ecosystem (#AlexTheSwiftie), Solana provides the perfect foundation.</p>
+                        <p>The journey to unlocking PBTC's full potential involves growing both its utility and its community. The deflationary edge and Solana speed are not just technical features; they are fundamental pillars supporting the project's vision for creating a valuable, functional, and sustainable digital asset. Exploring the real-time data on the new Autonomous Asset provides the clearest picture of how these forces are already at work.</p>
+                    `
+                },
+                {
+                    title: "Exploring the New PBTC Autonomous Asset: Your Essential Gateway to Purple Bitcoin",
+                    author: "Purple Bitcoin Team",
+                    htmlContent: `
+                        <p>The world of crypto can feel overwhelming – constantly changing prices, complex tokenomics, and scattered information. For holders and enthusiasts of Purple Bitcoin ($PBTC), or anyone considering joining the #PurpleFam, having a single, reliable source of truth and interaction is crucial. That's why we are thrilled to introduce the <strong>Purple Bitcoin Autonomous Online Asset</strong>, your comprehensive, transparent, and interactive gateway to everything PBTC.</p>
+                        <p>More than just a website or a block explorer link, the Autonomous Asset is designed as the central hub where you can track the growth of PBTC, deepen your understanding of its unique model, access real-world utility, and actively participate in the community – all from one intuitive interface. Whether you're a seasoned trader on Solana or a newcomer interested in utility-driven tokens, the Asset has been built with you in mind.</p>
+                        <p>This post will take you through the key features of the Autonomous Asset and explain how it empowers you to make informed decisions, engage with the ecosystem, and maximize your PBTC journey.</p>
+                        <h2>The Power of Real-Time, Transparent Data</h2>
+                        <p>In cryptocurrency, data is king. Understanding key metrics is vital for making informed decisions, whether you're trading or holding for the long term. The Autonomous Asset puts critical, real-time data directly at your fingertips via its intuitive Market Dashboard.</p>
+                        <p>What data can you access?</p>
+                        <ul>
+                            <li><strong>Live Price & Volume:</strong> Track the current market price and 24-hour trading volume across major integrated exchanges.</li>
+                            <li><strong>Market Cap (FDV):</strong> See the fully diluted market capitalization, providing a perspective on the project's potential scale.</li>
+                            <li><strong>Holder Count:</strong> Monitor the growth in the number of unique wallet addresses holding PBTC. This is a key indicator of community expansion.</li>
+                            <li><strong>Circulating Supply & Total Burned:</strong> Crucially, the Asset displays the current circulating supply and the <em>total amount of PBTC tokens burned to date</em>. This allows you to visually track the impact of the deflationary mechanism and see the supply decrease in real-time.</li>
+                        </ul>
+                        <p>For <strong>Alex the Solana Swiftie</strong>, this dashboard is an indispensable tool. Quick access to live price and volume data, combined with the transparency of supply metrics, provides essential insights for timing trades and assessing market dynamics on the fast Solana chain.</p>
+                        <p>For <strong>Vera the Value Voyager</strong>, the long-term data points like holder growth and total burned tokens offer tangible evidence of the project's progress and the effectiveness of its deflationary model. Seeing the supply visibly shrink reinforces the long-term value proposition.</p>
+                        <p>The Autonomous Asset pulls this data directly from reliable sources and the Solana blockchain itself, ensuring accuracy and transparency. This eliminates the need to visit multiple sites or rely solely on third-party aggregators.</p>
+                        <h2>Understanding Value Through the Education Hub</h2>
+                        <p>Crypto concepts, especially unique tokenomics models like PBTC's deflationary design or the advantages of building on Solana, can be complex. The Autonomous Asset addresses this with its integrated Education Hub.</p>
+                        <p>This section is designed to help you deepen your understanding of Purple Bitcoin's fundamentals:</p>
+                        <ul>
+                            <li><strong>Tokenomics Explained:</strong> Learn exactly how the deflationary burning mechanism works, how tokens are distributed, and the economic model driving value.</li>
+                            <li><strong>The Solana Advantage:</strong> Understand <em>why</em> PBTC is on Solana and the benefits this brings in terms of speed, cost, and scalability for both utility and trading.</li>
+                            <li><strong>Purple Travel Guide:</strong> Get detailed information on the Purple Travel platform and how you can use your PBTC for real-world utility, including step-by-step guides and information on discounts or rewards.</li>
+                            <li><strong>Coming Soon: Purple Pay Insights:</strong> Get early information on upcoming utility integrations like Purple Pay.</li>
+                        </ul>
+                        <p>The Education Hub isn't just static text. It's designed to be engaging, and completing modules can even unlock rewards through the gamification system (more on that next!). This feature is particularly valuable for <strong>Vera the Value Voyager</strong> who prioritizes understanding a project's fundamentals before committing for the long term. It provides the necessary information to build conviction based on knowledge, not just hype. Even <strong>Alex the Solana Swiftie</strong> can benefit by quickly grasping the core mechanics that influence market behavior.</p>
+                        <h2>Unlocking Real-World Utility with Direct Access</h2>
+                        <p>One of Purple Bitcoin's strongest differentiators is its existing, tangible utility via the Purple Travel platform. The Autonomous Asset serves as your direct link to this functionality.</p>
+                        <p>Within the Asset interface, you'll find clear pathways to access Purple Travel. This isn't just a promotional link; it's an integrated part of the ecosystem hub. You can explore travel destinations, search for bookings, and learn specifically how using PBTC provides benefits like potential discounts or special rewards not available with traditional payment methods.</p>
+                        <p>The asset will also provide updates and previews of future utility integrations, such as the upcoming Purple Pay feature for broader payment applications.</p>
+                        <p>This section is crucial for demonstrating the <em>real-world value</em> of PBTC beyond speculation. It shows how the token can be spent and used today, creating demand driven by actual services. Both <strong>Vera the Value Voyager</strong> (seeking projects with practical use cases) and <strong>Alex the Solana Swiftie</strong> (understanding that utility drives burning and potential demand) benefit from this transparent link between the token and its application. The Asset makes it simple to move from tracking PBTC's value to <em>using</em> PBTC for value.</p>
+                        <h2>Earn & Engage: The Gamified Community Experience</h2>
+                        <p>The Autonomous Asset is designed to be interactive and rewarding. By connecting your Solana wallet (like Phantom, Solflare, etc.), you unlock personalized features, including the "Active Tasks" section.</p>
+                        <p>This gamified system encourages positive engagement with the PBTC ecosystem. Tasks might include:</p>
+                        <ul>
+                            <li>Visiting specific sections of the Asset (like checking the burns data).</li>
+                            <li>Sharing information about PBTC on social media (like Twitter).</li>
+                            <li>Joining the official Telegram or Discord channels.</li>
+                            <li>Completing modules in the Education Hub.</li>
+                            <li>Providing feedback on the Asset or project.</li>
+                        </ul>
+                        <p>Completing these tasks earns you rewards, often in the form of PBTC tokens (or points redeemable for PBTC). This system incentivizes community participation, education, and promotion, turning passive holders into active contributors.</p>
+                        <p>The Asset also highlights community channels and spotlights, making it easier to connect with the #PurpleFam. For both <strong>Alex the Solana Swiftie</strong> (who enjoys active participation and potential earning opportunities) and <strong>Vera the Value Voyager</strong> (who values being part of a growing, engaged community), the gamified features provide a compelling reason to interact with the Asset daily.</p>
+                        <h2>Conclusion: Your Essential Hub for the PBTC Journey</h2>
+                        <p>The Purple Bitcoin Autonomous Online Asset is more than a tool; it's the central nervous system for the PBTC ecosystem. It brings together real-time transparency, essential education, tangible utility access, and rewarding community engagement into a single, user-friendly platform.</p>
+                        <p>By visiting the Asset, connecting your Solana wallet, and exploring its features, you gain unparalleled insight into PBTC's deflationary journey on Solana, unlock its real-world utility, and become an active participant in the #PurpleFam.</p>
+                        <p>Whether you are tracking price movements, studying tokenomics, planning your next trip with PBTC, or earning rewards for spreading the word, the Autonomous Asset is designed to enhance every step of your Purple Bitcoin experience. Visit the Asset today and discover the power of your new essential gateway.</p>
+                    `
+                }
+            ];
 
-    <script src="script.js"></script>
-    <script src="payment.js"></script>
+            const blogContainer = document.getElementById('blog-posts-container');
+            if (blogContainer) {
+                let postsHtml = '';
+                blogPosts.forEach(post => {
+                    postsHtml += `
+                        <article class="bg-gray-900/50 rounded-xl p-4 sm:p-6 border border-gray-800 shadow-lg blog-post">
+                            <h3 class="text-xl sm:text-2xl font-bold mb-2 text-purple-300">${post.title}</h3>
+                            <p class="text-xs text-gray-500 mb-4">By ${post.author} &bull; <span class="text-purple-400">Featured Post</span></p>
+                            <div class="educational-content text-gray-300">
+                                ${post.htmlContent}
+                            </div>
+                            <div class="mt-6 pt-4 border-t border-gray-700/50 flex justify-end">
+                                <a href="#hero" class="px-4 py-2 bg-purple-600 rounded-lg text-sm font-medium hover:bg-purple-500 transition">Back to Top</a>
+                            </div>
+                        </article>
+                    `;
+                });
+                blogContainer.innerHTML = postsHtml;
+            }
+
+            const videoScriptContent = `
+                <h4>Script Breakdown:</h4>
+                <p><strong>(0-8 seconds) Intro & Hook</strong></p>
+                <ul>
+                    <li><strong>Scene:</strong> Abstract nodes form a network, Solana logo appears with speed lines. Bitcoin logo morphs into purple.</li>
+                    <li><strong>Voiceover:</strong> "Tired of waiting? High fees? Want a crypto asset designed for both growth AND real use? Meet Purple Bitcoin – $PBTC."</li>
+                </ul>
+
+                <p><strong>(8-18 seconds) Scarcity & Deflation</strong></p>
+                <ul>
+                    <li><strong>Scene:</strong> Animated graph: supply trends down. Tokens burn in a furnace. 'Total Supply' number decreases.</li>
+                    <li><strong>Voiceover:</strong> "Built on the fundamental power of scarcity, like Bitcoin. PBTC is designed to be deflationary. Tokens are burned with every transaction and ecosystem activity..."</li>
+                </ul>
+
+                <p><strong>(18-28 seconds) Solana Speed & Efficiency</strong></p>
+                <ul>
+                    <li><strong>Scene:</strong> Solana's speed visualized: transactions fly. Compares Solana's TPS/cost to a slow, expensive chain.</li>
+                    <li><strong>Voiceover:</strong> "...But unlike legacy systems, PBTC lives on Solana. Experience lightning-fast transactions, near-zero fees. Speed and efficiency like you've never seen."</li>
+                </ul>
+
+                <p><strong>(28-45 seconds) Real-World Utility</strong></p>
+                <ul>
+                    <li><strong>Scene:</strong> Person books travel with PBTC. Discount/reward icon appears. Other utility illustrations (e.g., payment graphic) with 'Coming Soon' tag.</li>
+                    <li><strong>Voiceover:</strong> "This isn't just charts and speculation. PBTC has real-world utility TODAY. Use it for discounts and rewards on our Purple Travel platform. Your crypto for adventure! And more utility is coming soon, like Purple Pay."</li>
+                </ul>
+
+                <p><strong>(45-65 seconds) The Autonomous Asset Hub</strong></p>
+                <ul>
+                    <li><strong>Scene:</strong> Autonomous Asset interface fly-in. Highlights: Dashboard (live data), Education Hub, Utility links, Gamified Tasks. Wallet connection graphic.</li>
+                    <li><strong>Voiceover:</strong> "How do you see all this in action? How do you get involved? Introducing the new Purple Bitcoin Autonomous Online Asset! Your central hub. Track real-time data – see burns, supply, holders live. Learn everything in the Education Hub. Access all the utility..."</li>
+                </ul>
+
+                <p><strong>(65-75 seconds) Engagement & Rewards</strong></p>
+                <ul>
+                    <li><strong>Scene:</strong> Asset features: Active Tasks (user earning rewards). Transitions to PBTC logo, Asset URL, "Explore the Asset" button.</li>
+                    <li><strong>Voiceover:</strong> "...Complete fun tasks and earn PBTC rewards! Connect your Solana wallet and unlock your personalized experience. The Autonomous Asset is your gateway to the future of PBTC."</li>
+                </ul>
+
+                 <p><strong>(75-80 seconds) Call to Action & Outro</strong></p>
+                <ul>
+                    <li><strong>Scene:</strong> End screen: PBTC Logo, Asset URL, Social Media handles (@purple_bitcoin_), Hashtags: #PBTC #Solana #PurpleBitcoin #Deflationary #CryptoTravel</li>
+                    <li><strong>Voiceover:</strong> "Visit the Asset today. Join the #PurpleFam!" (Music fades out)</li>
+                </ul>
+            `;
+            const videoScriptContainer = document.getElementById('video-script-content');
+            if (videoScriptContainer) {
+                videoScriptContainer.innerHTML = videoScriptContent;
+            }
+
+            const infographicUrls = [
+                { url: 'https://r2.flowith.net/files/o/1747750005986-PBTC_Autonomous_Asset_RealTime_Data_Transparency@1024x1536.png', alt: 'PBTC Autonomous Asset Real-Time Data Transparency Infographic' },
+                { url: 'https://r2.flowith.net/files/o/1747750002164-The_PBTC_Scarcity_Engine_How_We_Burn_Towards_1@1024x1536.png', alt: 'The PBTC Scarcity Engine: How We Burn Towards $1 Infographic' },
+                { url: 'https://r2.flowith.net/files/o/1747749989505-Unlock_Value_and_Earn_Inside_the_PBTC_Autonomous_Asset@1024x1536.png', alt: 'Unlock Value and Earn Inside the PBTC Autonomous Asset Infographic' },
+                { url: 'https://r2.flowith.net/files/o/1747749983695-PBTC_Utility_Travel_Today_More_Tomorrow@1024x1536.png', alt: 'PBTC Utility: Travel Today, More Tomorrow Infographic' }
+            ];
+            const infographicsContainer = document.getElementById('infographics-container');
+            if (infographicsContainer) {
+                let infographicsHtml = '';
+                infographicUrls.forEach(item => {
+                    infographicsHtml += `
+                        <div class="bg-gray-900/50 rounded-xl p-2 border border-gray-800 shadow-lg flex items-center justify-center overflow-hidden aspect-[2/3] group transform hover:scale-105 transition-transform duration-300">
+                            <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="block w-full h-full relative">
+                                <img src="${item.url}" alt="${item.alt}" class="block w-full h-full object-contain rounded-lg transition-opacity duration-300 group-hover:opacity-80">
+                                <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <i class="fas fa-search-plus text-white text-3xl"></i>
+                                </div>
+                            </a>
+                        </div>
+                    `;
+                });
+                infographicsContainer.innerHTML = infographicsHtml;
+            }
+        });
+    </script>
 </body>
 </html>
